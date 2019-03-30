@@ -1,0 +1,59 @@
+
+
+<div class="header">
+  <a href="#default" class="logo">ChatApp</a>
+  <div class="header-right" >
+    <a class="active" (click)='LogOut()'>LogOut</a>      
+  </div>
+</div>
+<div class="container-fluid h-100">
+<div class="row justify-content-center h-100">
+
+  <div class="col-md-8 col-xl-6 chat">
+    <div class="card">
+      <div class="card-header msg_head">
+        <div class="d-flex bd-highlight">
+          <div class="img_cont">
+            <img src="../../assets/teamwork.png" class="rounded-circle user_img">
+            <span class="online_icon"></span>
+          </div>
+          <div class="user_info">
+            <span>Connected with Chat Room</span>
+          </div>
+        </div>					
+      </div>
+      <div class="card-body msg_card_body"style="overflow: scroll; height: xyz;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+          <div *ngFor="let message of messages" >	
+      <div class="d-flex justify-content-start mb-4" *ngIf="(message.senderId != userId)">
+          <div class="img_cont_msg">
+            <img src="../../assets/user.png" class="rounded-circle user_img_msg">
+          </div>
+          <div class="msg_cotainer">
+              {{ message.text }}
+            <span class="msg_time">{{message.createdAt}}</span>
+          </div>
+        </div>				
+        <div class="d-flex justify-content-end mb-4" *ngIf="(message.senderId == userId)">
+          <div class="msg_cotainer_send">
+              {{ message.text }}
+            <span class="msg_time_send">{{message.createdAt}}</span>
+          </div>
+          <div class="img_cont_msg">
+               <img src="../../assets/student.png" class="rounded-circle user_img_msg">
+          </div>
+        </div>
+        
+      </div>
+      </div>
+      <div class="card-footer">
+        <div class="input-group">						
+          <textarea name="" class="form-control type_msg" placeholder="Type a message" name="message" [(ngModel)]="newMessage" (keyup)='onKey($event)' autocomplete="off"></textarea>
+          <div class="input-group-append">
+            <span class="input-group-text send_btn" (click)='sendMessage()'><i class="fas fa-location-arrow"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

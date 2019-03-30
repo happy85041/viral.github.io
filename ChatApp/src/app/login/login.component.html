@@ -1,0 +1,24 @@
+
+<div class="header">
+  <a href="#default" class="logo">ChatApp</a>
+  <div class="header-right" >
+      
+  </div>
+</div>
+<div class="wrapper fadeInDown">
+<div id="formContent">
+<div class="fadeIn first">
+    <img src="../../assets/login.png" id="icon" alt="User Icon" />
+  </div>
+  <form name="form" (ngSubmit)="login()" #f="ngForm">   
+      <input type="text" id="login" [(ngModel)]="model.Name" name="login" placeholder="login">
+      <input type="password" id="password"  [(ngModel)]="model.Password"name="login" placeholder="password">
+      <div>
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </div>
+    </form>
+<p style="color: #D8000C;background-color: #FFD2D2;">{{errorMessage}}</p>
+</div>
+</div>
+   
+    
