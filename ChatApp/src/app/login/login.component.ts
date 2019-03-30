@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
-import {LocalStrorageService} from "../local-strorage.service";
 import { AuthService } from '../auth.service';
 import { User } from '../user.model';
 @Component({
@@ -15,7 +14,6 @@ export class LoginComponent implements OnInit {
   public errorMessage:string; 
 
   constructor(private router: Router,
-    public localStrorageService:LocalStrorageService,
     public authService: AuthService) { }
 
   ngOnInit() {   
@@ -50,10 +48,7 @@ export class LoginComponent implements OnInit {
         var isValid=this.users.filter(s=>s.Name==this.model.Name && s.Password==this.model.Password);
         if(isValid.length>0)
         {
-          this.localStrorageService.RemoveItem();
-          this.localStrorageService.SetItem(this.model.Name);
-
-          this.router.navigate([''])
+          this.router.navigate(['/user',this.model.Name])
         }
         else
         {

@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
   import Chatkit from '@pusher/chatkit-client';
   import { FormsModule } from '@angular/forms';
   import { ActivatedRoute } from '@angular/router';
-  import {LocalStrorageService} from "../local-strorage.service";
   import {Router} from "@angular/router";
 
 @Component({
@@ -28,11 +27,9 @@ export class UserComponent implements OnInit {
   newUser = '';
   joinableRooms = [];
   constructor( private activatedRoute: ActivatedRoute ,
-    private localStrorageService:LocalStrorageService,
     private router: Router) 
   {
-
-    this.userId=this.localStrorageService.GetData();
+    this.userId = this.activatedRoute.snapshot.params["id"];
     if(!this.userId)
     {
       this.router.navigate(['/login'])
@@ -44,7 +41,7 @@ export class UserComponent implements OnInit {
   
   LogOut()
   {
-    this.localStrorageService.RemoveItem();
+  
     this.router.navigate(['/login'])
   }
   connectToRoom(id) {
